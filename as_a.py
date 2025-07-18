@@ -1,19 +1,13 @@
 
 
-
-
-
-
-
-
 # --------------------------- 创建实例 ------------------------------------------- #
 import numpy as np
 from isaacsim import SimulationApp
 import keyword
 # 是否  启用无头模式
-print("是否启用无头模式？(True/False)")
+print("是否启用无头模式？(Y/N)")
 headless = input()
-if headless.lower() == "true":
+if headless.lower() == "Y":
     simulation_app = SimulationApp({"headless": True})
 else:
     simulation_app = SimulationApp({"headless": False})
@@ -82,7 +76,6 @@ camera_h.add_motion_vectors_to_frame()
 
 
 joints =['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6', 'finger_joint', 'left_outer_finger_joint', 'right_outer_finger_joint']
-position = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 
 
@@ -104,7 +97,12 @@ arm = RM65()
 while simulation_app.is_running():
     my_world.step(render=True)
     img = camera_tool.get_image(camera_l)
+    if img is not False:
+        cv.imshow("left", img)
+        cv.waitKey(1)
     position = arm.get_joint_angles()
+    # 加入 3 个 0 值，代表保持姿态不动
+    position = np.concatenate((position, [0, 0, 0]))
     articulation.set_joint_positions(positions=position, joint_names=joints)
 # 自动关闭模拟应用
 simulation_app.close()

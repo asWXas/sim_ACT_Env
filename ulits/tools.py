@@ -12,11 +12,11 @@ class LowPassFilter:
 
 class  CameraTool:
     def __init__(self):
-        pass
-    def get_image(camera:Camera):
+        print("初始化相机工具")
+    def get_image(self, camera):
         img = camera.get_rgb()
         if img is None or img.size == 0:
-            print("图像为空，无法保存")
+            print("前两帧可能为空！.....")
             return False
         try:
             if img.dtype != np.uint8:
@@ -27,3 +27,4 @@ class  CameraTool:
         except Exception as e:
             print(f"保存图像时出错: {e}")
             return False
+

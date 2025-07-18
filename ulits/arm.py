@@ -28,8 +28,11 @@ class RM65:
         else:
             self.lpf = None
 
+        self.arm.rm_movej(INITIAL_JOINTS, 20, 0, 0, 1)  # 关节运动到初始
+
     def get_joint_angles(self):
-        joint_angles = self.arm.rm_get_joint_degree()[1]
+        joint_angles = self.arm.rm_get_joint_degree()
+        joint_angles = joint_angles[1]
         # 应用低通滤波（如果启用）
         if ENABLE_FILTER:
             filtered_angles = self.lpf.filter(joint_angles)
