@@ -1,0 +1,9 @@
+width: 1920
+height: 1200
+camera_matrix:
+  - [958.8, 0.0, 957.8]
+  - [0.0, 956.7, 589.5]
+  - [0.0, 0.0, 1.0]
+pixel_size: 3
+f_stop: 1.8
+focus_distance: 0.006
