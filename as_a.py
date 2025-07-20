@@ -66,22 +66,19 @@ single_xform_prim = SingleXFormPrim(
 # --------------------------------- Camera ---------- ---------- #
 camera_r = Camera(
     prim_path="/World/camera_right",
-    position=np.array([-1.5038844093541166, 2.736047605008837, 1.458387087582364]),
+    position=np.array([-2.9103394, -3.118106 ,  1.6537194]),
     frequency=30,
     resolution=(640, 480),
+    orientation=[ 0.92355239, -0.03532607,  0.11724859,  0.36339485],
 )
-camera_r.set_local_pose(
-    orientation=rot_utils.euler_angles_to_quats(np.array([30, -11, 90]), degrees=True),  # Y -X Z
-    camera_axes="usd"
-)
-
-
 camera_l = Camera(
     prim_path="/World/camera_left",
-    position=np.array([-1.5038844093541166, -2.736047605008837, 1.458387087582364]),
+    position=np.array([-2.8797894,  3.4197335,  1.381893]),
     frequency=30,
     resolution=(640, 480),
+    orientation=[ 0.91387818,  0.03837286,  0.08894618, -0.39426231],
 )
+
 
 camera_h = Camera(
     prim_path="/World/env/robot/rma/Link6/camera",
@@ -89,9 +86,11 @@ camera_h = Camera(
     resolution=(640, 480),
 )
 # --------------------------------- XFormPrim ---------------------------- ---------- #
-
    
-
+camera_h.set_world_pose(
+    position=[-1.1346314e+00,  2.1145139e-05,  8.7801039e-01],
+    orientation=[ 9.97307397e-01, -2.47359278e-06, -7.33345454e-02, -9.14931304e-06]
+)
 
 # -------------------------------- reset and initialize physics ----------------------------- #
 
@@ -127,6 +126,7 @@ my_world.add_stage_callback(callback_name="stage_callback", callback_fn=stage_ca
 # 开始模拟循环
 while simulation_app.is_running():
     my_world.step(render=True)
+    print(camera_h.get_world_pose())
     # img_l = camera_tool.get_image(camera_l)
     # img_r = camera_tool.get_image(camera_r)
     # img_h = camera_tool.get_image(camera_h)
