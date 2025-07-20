@@ -17,6 +17,13 @@
 - `Env/robot/`：机器人模型及配置
 - `ulits/`：工具与功能模块
 
+### 注意事项
+- 相机坐标系为 usd  , 输入顺序 为 Y -X Z   
+- rot_utils.euler_angles_to_quats(np.array([Y, -X, Z])
+
 ### 演示图片
 ![演示图片 - 机器人在环境中的初始位置](docs/img/image.png)
 ![演示图片 - 机器人执行某个动作的示例](docs/img/real.png)
+
+
+
