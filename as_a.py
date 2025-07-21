@@ -126,23 +126,22 @@ my_world.add_stage_callback(callback_name="stage_callback", callback_fn=stage_ca
 # 开始模拟循环
 while simulation_app.is_running():
     my_world.step(render=True)
-    print(camera_h.get_world_pose())
-    # img_l = camera_tool.get_image(camera_l)
-    # img_r = camera_tool.get_image(camera_r)
-    # img_h = camera_tool.get_image(camera_h)
-    # if img_l is not False:
-    #     cv.imshow("left", img_l)
-    #     cv.waitKey(1)
-    # if img_r is not False:
-    #     cv.imshow("right", img_r)
-    #     cv.waitKey(1)
-    # if img_h is not False:
-    #     cv.imshow("head", img_h)
-    #     cv.waitKey(1)
-    # position = [0,0,0,0,0,0]
-    # # 加入 3 个 0 值，代表保持姿态不动
-    # position = np.concatenate((position, [0, 0, 0,0.1,-0.1]))
-    # articulation.set_joint_positions(positions=position, joint_names=joints)
+    img_l = camera_tool.get_image(camera_l)
+    img_r = camera_tool.get_image(camera_r)
+    img_h = camera_tool.get_image(camera_h)
+    if img_l is not False:
+        cv.imshow("left", img_l)
+        cv.waitKey(1)
+    if img_r is not False:
+        cv.imshow("right", img_r)
+        cv.waitKey(1)
+    if img_h is not False:
+        cv.imshow("head", img_h)
+        cv.waitKey(1)
+    position = arm.get_joint_angles()
+    # 加入 3 个 0 值，代表保持姿态不动
+    position = np.concatenate((position, [0, 0, 0,0.1,-0.1]))
+    articulation.set_joint_positions(positions=position, joint_names=joints)
 # 自动关闭模拟应用
 simulation_app.close()
 

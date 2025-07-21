@@ -42,3 +42,6 @@ class RM65:
             filtered_angles = [np.deg2rad(angle) for angle in filtered_angles]
             
         return filtered_angles
+    
+    def reset_joint_angles(self):
+        self.arm.rm_movej(INITIAL_JOINTS, 20, 0, 0, 1)  # 关节运动到初始

@@ -25,5 +25,7 @@
 ![演示图片 - 机器人在环境中的初始位置](docs/img/image.png)
 ![演示图片 - 机器人执行某个动作的示例](docs/img/real.png)
 
+![演示图片 - 机器人执行某个动作的示例](docs/img/imc.png)
+
 
 
