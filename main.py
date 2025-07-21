@@ -140,7 +140,7 @@ while simulation_app.is_running():
         cv.waitKey(1)
     position = arm.get_joint_angles()
     # 加入 3 个 0 值，代表保持姿态不动
-    position = np.concatenate((position, [0, 0, 0,0.1,-0.1]))
+    position = np.concatenate((position, [1, 0, 0,0.1,-0.1]))
     articulation.set_joint_positions(positions=position, joint_names=joints)
 # 自动关闭模拟应用
 simulation_app.close()

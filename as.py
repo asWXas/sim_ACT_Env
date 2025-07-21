@@ -38,40 +38,12 @@ my_world = World(stage_units_in_meters=1.0)
 
 # --------------------------------- add stage ---------------------------- ---------- #
 add_value = stage_utils.add_reference_to_stage(usd_path="Env/robot/rmb.usd", prim_path="/World/env/robot")
-articulation = Articulation(prim_paths_expr="/World/env/robot/rma/root_joint")
+# articulation = Articulation(prim_paths_expr="/World/env/robot/rma/root_joint")
 
-camera_r = Camera(
-    prim_path="/World/camera_right",
-    position=np.array([0.0, 0.0, 2.0]),
-    frequency=30,
-    resolution=(640, 480),
-    orientation=rot_utils.euler_angles_to_quats(np.array([0, 90, 0]), degrees=True),
-)
-camera_l = Camera(
-    prim_path="/World/camera_left",
-    position=np.array([0.0, 0.0, 2.0]),
-    frequency=30,
-    resolution=(640, 480),
-    orientation=rot_utils.euler_angles_to_quats(np.array([0, 90, 0]), degrees=True),
-)
 
-camera_h = Camera(
-    prim_path="/World/env/robot/rma/Link6/camera",
-    frequency=30,
-    resolution=(640, 480),
-    orientation=rot_utils.euler_angles_to_quats(np.array([0, 90, 0]), degrees=True),
-)
-
-# -------------------------------- reset and initialize physics ----------------------------- #
-my_world.reset()
-articulation.initialize()
-camera_l.initialize()
-camera_r.initialize()
-camera_h.initialize()
-
-camera_l.add_motion_vectors_to_frame()
-camera_r.add_motion_vectors_to_frame()
-camera_h.add_motion_vectors_to_frame()
+# # -------------------------------- reset and initialize physics ----------------------------- #
+# my_world.reset()
+# articulation.initialize()
 
 
 joints =['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6', 'finger_joint', 'left_outer_finger_joint', 'right_outer_finger_joint']
